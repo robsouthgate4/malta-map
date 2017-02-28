@@ -1,2 +1,3 @@
-export{ videoResources } from './videos.js';
-export{ markerResources } from './markers.js';
+export{ videoResources } from './videos';
+export{ places } from './places';
+export { CustomMarker } from './CustomMarker';

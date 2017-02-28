@@ -1,10 +1,11 @@
 
 import React, { PropTypes } from 'react'
 import ReactDOM from 'react-dom';
+import { CustomMarker } from '../resources';
 
 export class MapGoogle extends React.Component {
 
-  componentDidUpdate = (prevProps, prevState) => {
+  componentDidMount = () => {
       this.loadMap();
       window.addEventListener("resize", this.recenterMap);
   }
@@ -18,6 +19,19 @@ export class MapGoogle extends React.Component {
         center: this.center,
         zoom: 16
       });
+      this.createMarkers();
+  }
+
+  createMarkers = () => {
+    this.props.places.forEach((place, index) => {
+      const overlay = new CustomMarker(
+      	new window.google.maps.LatLng(place.lat, place.lng),
+      	this.map,
+      	{
+      		marker_id: index
+      	}
+      );
+    })
   }
 
   recenterMap = () => {
